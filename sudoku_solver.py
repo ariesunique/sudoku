@@ -39,25 +39,11 @@ def print_timing(func):
 
 
 def generate_rows():
-    rows = []
-    for i in xrange(1,10):
-        names = []
-        for j in "ABCDEFGHI":
-            boxname = j + str(i)
-            names.append(boxname)
-        rows.append(names)
-    return rows
+    return [[j + str(i) for j in "ABCDEFGHI"] for i in xrange(1,10) ]
 
 
 def generate_cols():
-    cols = []
-    for j in "ABCDEFGHI":
-        names = []
-        for i in xrange(1,10):
-            boxname = j + str(i)
-            names.append(boxname)
-        cols.append(names)
-    return cols
+    return [[j + str(i) for i in xrange(1,10)] for j in "ABCDEFGHI" ]
 
 
 def generate_possibles():
@@ -254,8 +240,7 @@ def guess():
         name = pairs.pop(0)
         name2 = pairs.pop(0)
 
-    #print name, possibles[name]
-
+    # store all the current board settings
     guesses.append(copy.copy(board))
     guesses.append(str(name) + str(possibles[name][0]))
     guesses.append(str(name2) + str(possibles[name2][1]))
@@ -357,7 +342,7 @@ if __name__ == "__main__":
     ]
 
     #board = generate_test_board()
-    display()
+    #display()
 
     possibles = generate_possibles()
 
@@ -401,5 +386,5 @@ if __name__ == "__main__":
     else:
         t2 = time.time()
         print "\nSolved the puzzle in %d iterations and %.2f ms.\n" % (n, (t2-t1)*1000.0)
-        display()
+        #display()
 
